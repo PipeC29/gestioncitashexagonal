@@ -1,6 +1,6 @@
 package com.fcv.gestioncitas.infrastructure.repository.jpa;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalTime;
 
 @Entity
@@ -20,7 +20,8 @@ public class DoctorEntity {
 
     public DoctorEntity() {}
 
-    public DoctorEntity(String nombre, String apellido, String especialidad, LocalTime horaInicio, LocalTime horaFin) {
+    public DoctorEntity(Long id, String nombre, String apellido, String especialidad, LocalTime horaInicio, LocalTime horaFin) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
@@ -29,12 +30,9 @@ public class DoctorEntity {
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public String getNombre() { return nombre; }
     public String getApellido() { return apellido; }
     public String getEspecialidad() { return especialidad; }
-
     public LocalTime getHoraInicio() { return horaInicio; }
     public LocalTime getHoraFin() { return horaFin; }
 }

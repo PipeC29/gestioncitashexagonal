@@ -1,6 +1,6 @@
 package com.fcv.gestioncitas.infrastructure.repository.jpa;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,10 +11,10 @@ public class CitaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private DoctorEntity doctor;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private PacienteEntity paciente;
 
     private LocalDateTime fechaHora;
@@ -30,10 +30,10 @@ public class CitaEntity {
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public DoctorEntity getDoctor() { return doctor; }
     public PacienteEntity getPaciente() { return paciente; }
     public LocalDateTime getFechaHora() { return fechaHora; }
     public int getDuracionMinutos() { return duracionMinutos; }
+
+    public void setId(Long id) { this.id = id; }
 }

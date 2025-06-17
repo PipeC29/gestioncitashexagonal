@@ -3,6 +3,7 @@ package com.fcv.gestioncitas.domain.model;
 import java.time.LocalTime;
 
 public class Doctor {
+
     private Long id;
     private String nombre;
     private String apellido;
@@ -10,10 +11,8 @@ public class Doctor {
     private LocalTime horaInicio;
     private LocalTime horaFin;
 
-    public Doctor(String nombre, String apellido, String especialidad, LocalTime horaInicio, LocalTime horaFin) {
-        if (horaInicio.isAfter(horaFin)) {
-            throw new IllegalArgumentException("La hora de inicio debe ser menor que la hora de fin");
-        }
+    public Doctor(Long id, String nombre, String apellido, String especialidad, LocalTime horaInicio, LocalTime horaFin) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
@@ -22,7 +21,6 @@ public class Doctor {
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
     public String getNombre() { return nombre; }
     public String getApellido() { return apellido; }
     public String getEspecialidad() { return especialidad; }

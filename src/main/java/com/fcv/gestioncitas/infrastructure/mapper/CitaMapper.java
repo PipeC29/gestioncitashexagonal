@@ -1,6 +1,8 @@
 package com.fcv.gestioncitas.infrastructure.mapper;
 
 import com.fcv.gestioncitas.domain.model.Cita;
+import com.fcv.gestioncitas.domain.model.Doctor;
+import com.fcv.gestioncitas.domain.model.Paciente;
 import com.fcv.gestioncitas.infrastructure.repository.jpa.CitaEntity;
 import com.fcv.gestioncitas.infrastructure.repository.jpa.DoctorEntity;
 import com.fcv.gestioncitas.infrastructure.repository.jpa.PacienteEntity;
@@ -14,11 +16,10 @@ public class CitaMapper {
     }
 
     public static Cita toModel(CitaEntity entity) {
-        return new Cita(
-                DoctorMapper.toModel(entity.getDoctor()),
-                PacienteMapper.toModel(entity.getPaciente()),
-                entity.getFechaHora(),
-                entity.getDuracionMinutos()
-        );
+        Doctor doctor = DoctorMapper.toModel(entity.getDoctor());
+        Paciente paciente = PacienteMapper.toModel(entity.getPaciente());
+        Cita model = new Cita(doctor, paciente, entity.getFechaHora(), entity.getDuracionMinutos());
+        model.setId(entity.getId());
+        return model;
     }
 }

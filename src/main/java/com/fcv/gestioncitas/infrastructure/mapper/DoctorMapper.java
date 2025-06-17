@@ -6,26 +6,24 @@ import com.fcv.gestioncitas.infrastructure.repository.jpa.DoctorEntity;
 public class DoctorMapper {
 
     public static DoctorEntity toEntity(Doctor model) {
-        DoctorEntity entity = new DoctorEntity(
+        return new DoctorEntity(
+                model.getId(),
                 model.getNombre(),
                 model.getApellido(),
                 model.getEspecialidad(),
                 model.getHoraInicio(),
                 model.getHoraFin()
         );
-        entity.setId(model.getId());
-        return entity;
     }
 
     public static Doctor toModel(DoctorEntity entity) {
-        Doctor model = new Doctor(
+        return new Doctor(
+                entity.getId(),
                 entity.getNombre(),
                 entity.getApellido(),
                 entity.getEspecialidad(),
                 entity.getHoraInicio(),
                 entity.getHoraFin()
         );
-        model.setId(entity.getId());
-        return model;
     }
 }
