@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface CitaRepositoryJpa extends JpaRepository<CitaEntity, Long> {
 
@@ -13,4 +14,8 @@ public interface CitaRepositoryJpa extends JpaRepository<CitaEntity, Long> {
     boolean existeSolapamiento(@Param("doctorId") Long doctorId,
                                @Param("inicio") LocalDateTime inicio,
                                @Param("fin") LocalDateTime fin);
+
+    @Query("SELECT c FROM CitaEntity c WHERE c.doctor.id = :doctorId ORDER BY c.fechaHora ASC")
+    List<CitaEntity> findByDoctorIdOrderByFechaHoraAsc(@Param("doctorId") Long doctorId);
+
 }

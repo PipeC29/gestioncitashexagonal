@@ -1,14 +1,12 @@
-# Imagen base con Java 8
-FROM openjdk:8-jdk-alpine
-
-# Directorio de trabajo dentro del contenedor
+# Etapa 1: Compilar el proyecto
+FROM maven:3.8.8-openjdk-8 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copia el .jar compilado
-COPY target/gestioncitas-1.0.0.jar app.jar
-
-# Expone el puerto de la aplicación
+# Etapa 2: Ejecutar el jar
+FROM openjdk:8-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Comando de inicio
 ENTRYPOINT ["java", "-jar", "app.jar"]

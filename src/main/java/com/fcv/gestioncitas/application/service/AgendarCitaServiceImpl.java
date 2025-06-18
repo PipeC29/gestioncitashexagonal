@@ -9,6 +9,7 @@ import com.fcv.gestioncitas.domain.port.out.BuscarPacientePort;
 import com.fcv.gestioncitas.domain.port.out.GuardarCitaPort;
 import com.fcv.gestioncitas.exception.AgendaOcupadaException;
 import com.fcv.gestioncitas.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class AgendarCitaServiceImpl implements AgendarCitaUseCase {
 
     private final BuscarDoctorPort buscarDoctorPort;
     private final BuscarPacientePort buscarPacientePort;
-    private final GuardarCitaPort guardarCitaPort;
+    @Qualifier("citaRepositoryAdapter") private final GuardarCitaPort guardarCitaPort;
 
     public AgendarCitaServiceImpl(BuscarDoctorPort buscarDoctorPort,
                                   BuscarPacientePort buscarPacientePort,
@@ -31,9 +32,9 @@ public class AgendarCitaServiceImpl implements AgendarCitaUseCase {
 
     public Cita agendarCita(Cita cita) {
         Doctor doctor = buscarDoctorPort.buscarDoctorPorId(cita.getDoctor().getId())
-                .orElseThrow(new ResourceNotFoundException("Doctor no encontrado"));
+                .orElseThrow( ()-> new ResourceNotFoundException("Doctor no encontrado"));
         Paciente paciente = buscarPacientePort.buscarPacientePorId(cita.getPaciente().getId())
-                .orElseThrow(new ResourceNotFoundException("Paciente no encontrado"));
+                .orElseThrow( ()-> new ResourceNotFoundException("Paciente no encontrado"));
 
         validarDisponibilidad(cita, doctor);
 

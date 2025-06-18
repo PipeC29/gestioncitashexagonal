@@ -6,11 +6,11 @@ import com.fcv.gestioncitas.domain.port.out.GuardarDoctorPort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DoctorServiceImpl implements CrearDoctorUseCase {
+public class CrearDoctorServiceImpl implements CrearDoctorUseCase {
 
     private final GuardarDoctorPort guardarDoctorPort;
 
-    public DoctorServiceImpl(GuardarDoctorPort guardarDoctorPort) {
+    public CrearDoctorServiceImpl(GuardarDoctorPort guardarDoctorPort) {
         this.guardarDoctorPort = guardarDoctorPort;
     }
 

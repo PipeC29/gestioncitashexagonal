@@ -1,6 +1,8 @@
 package com.fcv.gestioncitas.infrastructure.repository.jpa;
 
-import jakarta.persistence.*;
+
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "pacientes")
