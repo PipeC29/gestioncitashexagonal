@@ -77,10 +77,17 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
 			<!-- Tu plugin maven-compiler-plugin puede quedarse como está -->
 
 			<!-- Agrega este bloque para que el .jar sea ejecutable -->
 			<plugin>
+
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.2.0</version>
