@@ -87,7 +87,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.fcv.gestioncitas.GestionCitasApplication</mainClass>
+							<mainClass>com.fcv.gestioncitas.GestioncitasApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
